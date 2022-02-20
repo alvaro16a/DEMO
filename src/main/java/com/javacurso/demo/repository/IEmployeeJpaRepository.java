@@ -8,5 +8,5 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface IEmployeeJpaRepository extends JpaRepository<Employee,Long>{
     //select fields from employee where employeid='[param]'
-    //Employee findByEmployeeid(String employeeid);
+    Employee findByEmployeeid(String employeeid);
 }
