@@ -1,10 +1,12 @@
 package com.javacurso.demo.model;
 
 import javax.persistence.Column;
+import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
+@Entity
 public class Employee {
 
     @Id
@@ -18,12 +20,12 @@ public class Employee {
     private String lastName;
 
     @Column(length = 10, nullable = false, unique = true)
-    private String employeeId;
+    private String employeeid;
 
-    public Employee(String firstName, String lastName, String employeeId) {
+    public Employee(String firstName, String lastName, String employeeid) {
         this.firstName = firstName;
         this.lastName = lastName;
-        this.employeeId = employeeId;
+        this.employeeid = employeeid;
     }
 
     public Long getId() {
@@ -50,12 +52,12 @@ public class Employee {
         this.lastName = lastName;
     }
 
-    public String getEmployeeId() {
-        return employeeId;
+    public String getEmployeeid() {
+        return employeeid;
     }
 
-    public void setEmployeeId(String employeeId) {
-        this.employeeId = employeeId;
+    public void setEmployeeid(String employeeid) {
+        this.employeeid = employeeid;
     }
 
     @Override
@@ -85,7 +87,7 @@ public class Employee {
 
     @Override
     public String toString() {
-        return "Employee [employeeId=" + employeeId + ", firstName=" + firstName + ", id=" + id + ", lastName="
+        return "Employee [employeeid=" + employeeid + ", firstName=" + firstName + ", id=" + id + ", lastName="
                 + lastName + "]";
     }
 
