@@ -1,10 +1,8 @@
 package com.javacurso.demo.services;
-
 import com.javacurso.demo.model.Role;
 import com.javacurso.demo.repository.IRoleJpaRepository;
 import java.util.List;
 import java.util.Optional;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -15,7 +13,6 @@ public class RoleService {
 
     @Autowired
     IRoleJpaRepository roleRepository;
-
 
     public List<Role> getRoles(){
         return roleRepository.findAll();
@@ -39,8 +36,7 @@ public class RoleService {
             return new ResponseEntity<>(roleRepository.save(_role), HttpStatus.OK);
         }else{
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-        }
-        
+        }  
     }
 
     public String deleteById( Long id){
@@ -50,8 +46,6 @@ public class RoleService {
         } catch (Exception e) {
             return "rool could not be removed";
         }
-    }
-
-    
+    } 
     
 }

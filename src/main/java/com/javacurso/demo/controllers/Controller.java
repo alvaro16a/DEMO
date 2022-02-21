@@ -31,7 +31,9 @@ public class Controller {
     @Autowired
     ProjectService projectService;
 
-/////////////////////////////Role/////////////////////////////
+    //////////////////////////////////////////////////////////////////////////
+    ///Role////
+    /////////////////////////////////////////////////////////////////////////
     @GetMapping("/role")//permite ver los roles existentes
     public List<Role> getRoles(){
         return roleService.getRoles();
@@ -53,11 +55,13 @@ public class Controller {
     }
 
     @DeleteMapping(path = "/role/{id}" )//al recibir una solicitud delete elimina el usuario con una determinada id
-    public String deleteById(@PathVariable("id") Long id){
+    public String deleteRoleById(@PathVariable("id") Long id){
         return roleService.deleteById(id);
     }
 
-    /////////////////////////////Project/////////////////////////////
+    //////////////////////////////////////////////////////////////////////////
+    ///Project////
+    /////////////////////////////////////////////////////////////////////////
     @GetMapping("/project")//permite ver los proyectos existentes
     public List<Project> getProjects(){
         return projectService.getProjects();
@@ -68,19 +72,19 @@ public class Controller {
         return this.projectService.getProjectById(id);
     }
 
-    /*@PostMapping("/role")//Crea un nuevo rol
-    public Role createRole(@RequestBody Role role){
-        return this.roleService.createRole(role);
+    @PostMapping("/project")//Crea un nuevo rol
+    public Project createProject(@RequestBody Project project){
+        return this.projectService.createProject(project);
     }
 
-    @PutMapping("/role/{id}")
-    public ResponseEntity<Role> updateRoleById(@PathVariable("id") long id, @RequestBody Role role){
-        return this.roleService.updateRoleById(id,role);
+    @PutMapping("/project/{id}")
+    public ResponseEntity<Project> updateProjectById(@PathVariable("id") long id, @RequestBody Project project){
+        return this.projectService.updateProjectId(id, project);
     }
 
-    @DeleteMapping(path = "/role/{id}" )//al recibir una solicitud delete elimina el usuario con una determinada id
-    public String deleteById(@PathVariable("id") Long id){
-        return roleService.deleteById(id);
-    }/*
+    @DeleteMapping(path = "/project/{id}" )//al recibir una solicitud delete elimina el projecto con una determinada id
+    public String deleteProjectById(@PathVariable("id") Long id){
+        return projectService.deleteById(id);
+    }
 
 }

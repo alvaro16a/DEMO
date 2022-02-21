@@ -1,5 +1,4 @@
 package com.javacurso.demo.model;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -15,6 +14,9 @@ public class Project {
 
     @Column(length = 25, nullable = false, unique = true)
     private String name;
+
+    public Project() {
+    }
 
     public Project(String name) {
         this.name = name;
