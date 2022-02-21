@@ -1,10 +1,18 @@
 package com.javacurso.demo.model;
 
+import java.util.ArrayList;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import java.util.List;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 
 @Entity
 public class Employee {
@@ -22,10 +30,22 @@ public class Employee {
     @Column(length = 10, nullable = false, unique = true)
     private String employeeid;
 
-    public Employee(String firstName, String lastName, String employeeid) {
+    @ManyToOne(optional = false)
+    @JoinColumn(name = "id_role")
+    private Role role;
+
+
+    @ManyToMany(cascade = CascadeType.ALL)
+    @JoinTable(name = "employee_project",
+                joinColumns = {@JoinColumn(name="employee_id")},
+                inverseJoinColumns = {@JoinColumn(name="project_id")})  
+    private List<Project> projects = new ArrayList<Project>();
+
+    public Employee(String firstName, String lastName, String employeeid,Role role) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.employeeid = employeeid;
+        this.role=role;
     }
 
     public Long getId() {
@@ -58,6 +78,22 @@ public class Employee {
 
     public void setEmployeeid(String employeeid) {
         this.employeeid = employeeid;
+    }
+
+    public Role getRole() {
+        return role;
+    }
+
+    public void setRole(Role role) {
+        this.role = role;
+    }
+
+    public List<Project> getProjects() {
+        return projects;
+    }
+
+    public void setProjects(List<Project> projects) {
+        this.projects = projects;
     }
 
     @Override
