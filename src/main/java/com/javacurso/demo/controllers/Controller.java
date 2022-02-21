@@ -2,8 +2,10 @@ package com.javacurso.demo.controllers;
 
 import java.util.*;
 
+import com.javacurso.demo.model.Employee;
 import com.javacurso.demo.model.Project;
 import com.javacurso.demo.model.Role;
+import com.javacurso.demo.services.EmployeeService;
 import com.javacurso.demo.services.ProjectService;
 import com.javacurso.demo.services.RoleService;
 
@@ -31,9 +33,13 @@ public class Controller {
     @Autowired
     ProjectService projectService;
 
-    //////////////////////////////////////////////////////////////////////////
-    ///Role////
-    /////////////////////////////////////////////////////////////////////////
+    @Autowired
+    EmployeeService employeeService;
+
+    //////////////////////////////////////////////////////////////////////////////////////
+    //Role////
+    //////////////////////////////////////////////////////////////////////////////////////
+
     @GetMapping("/role")//permite ver los roles existentes
     public List<Role> getRoles(){
         return roleService.getRoles();
@@ -59,9 +65,11 @@ public class Controller {
         return roleService.deleteById(id);
     }
 
-    //////////////////////////////////////////////////////////////////////////
-    ///Project////
-    /////////////////////////////////////////////////////////////////////////
+
+    //////////////////////////////////////////////////////////////////////////////////////
+    //Project////
+    //////////////////////////////////////////////////////////////////////////////////////
+
     @GetMapping("/project")//permite ver los proyectos existentes
     public List<Project> getProjects(){
         return projectService.getProjects();
@@ -85,6 +93,32 @@ public class Controller {
     @DeleteMapping(path = "/project/{id}" )//al recibir una solicitud delete elimina el projecto con una determinada id
     public String deleteProjectById(@PathVariable("id") Long id){
         return projectService.deleteById(id);
+    }
+
+    //////////////////////////////////////////////////////////////////////////////////////
+    //Employee////
+    /////////////////////////////////////////////////////////////////////////////////////
+
+
+    @GetMapping("/employee")//permite ver los proyectos existentes
+    public List<Employee> getEmployees(){
+        return employeeService.getEmployees();
+    }
+
+    @GetMapping("/employee/{id}")//se obtiene un proyecto por su id
+    public Optional<Employee> getEmployeeById(@PathVariable("id") Long id){
+        return this.employeeService.getEmployeeById(id);
+    }
+
+    @PostMapping("/employee")//Crea un nuevo employee
+    public String createEmployee(@RequestBody Employee employee){
+        if(roleService.finRoleByName(employee.getRole().getName())== null){
+            return "No existe el rool";
+        }else{
+            return employeeService.createEmployee(employee.getFirstName(),employee.getLastName(),employee.getEmployeeid(),roleService.finRoleByName(employee.getRole().getName()));
+            
+        }
+
     }
 
 }

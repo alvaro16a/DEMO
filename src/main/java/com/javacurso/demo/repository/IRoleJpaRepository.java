@@ -9,7 +9,7 @@ import org.springframework.stereotype.Repository;
 public interface IRoleJpaRepository extends JpaRepository<Role,Long>{
 
     Optional<Role> findById(Long id);
-    List<Role> findByName(String name);
+    Role findByName(String name);
     List<Role> findAll();
 
 }

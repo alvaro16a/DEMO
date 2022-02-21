@@ -41,6 +41,10 @@ public class Employee {
                 inverseJoinColumns = {@JoinColumn(name="project_id")})  
     private List<Project> projects = new ArrayList<Project>();
 
+    public Employee() {
+    }
+
+
     public Employee(String firstName, String lastName, String employeeid,Role role) {
         this.firstName = firstName;
         this.lastName = lastName;

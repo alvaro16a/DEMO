@@ -46,6 +46,12 @@ public class RoleService {
         } catch (Exception e) {
             return "rool could not be removed";
         }
-    } 
+    }
+    
+    public Role finRoleByName(String name){
+        return roleRepository.findByName(name);
+    }
+
+    
     
 }
