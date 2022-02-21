@@ -15,6 +15,11 @@ public class Role {
     @Column(length = 15,nullable=false,unique=true)
     private String name;
 
+    
+
+    public Role() {
+    }
+
     public Role(String name) {
         this.name = name;
     }
